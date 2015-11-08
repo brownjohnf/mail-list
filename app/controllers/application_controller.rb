@@ -5,4 +5,12 @@ class ApplicationController < ActionController::Base
 
   def default
   end
+
+  def after_sign_in_path_for(resource)
+    if params[:redirect]
+      "%s?token=%s" % [params[:redirect], cookies[:_nw_auth_session]]
+    else
+      super
+    end
+  end
 end

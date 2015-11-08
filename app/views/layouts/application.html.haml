@@ -13,4 +13,15 @@
     .container
       .row
         .col-sm-12
+          %ul
+            %li= cookies["_nw_auth_session"]
+            - flash.to_h.each_pair do |name, value|
+              .alert.alert-info.alert-dismissable{role: 'alert'}
+                %button.close{type: 'button', 'data-dismiss': 'alert', 'aria-label': 'Close'}
+                  %span{'aria-hidden':true} &times;
+                %strong= name.capitalize
+                = value
+    .container
+      .row
+        .col-sm-12
           = yield
