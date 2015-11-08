@@ -4,6 +4,7 @@ threads threads_count, threads_count
 
 preload_app!
 
+rackup      DefaultRackup
 port        Integer(ENV['PORT'])
 environment ENV['RACK_ENV']
 
