@@ -1,1 +1,1 @@
-web: puma -w 1 -t 0:16
+web: bin/puma -C config/puma.yml
