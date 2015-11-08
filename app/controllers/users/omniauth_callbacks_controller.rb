@@ -1,13 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def github
     # You need to implement the method below in your model (e.g. app/models/user.rb)
-    puts 'start'
     @user = User.from_omniauth(request.env["omniauth.auth"])
-    puts 'found user'
-
-    puts 'signing in'
-    puts sign_in(@user).inspect
-    puts 'signed in'
 
     if @user.persisted?
       #this will throw if @user is not activated
