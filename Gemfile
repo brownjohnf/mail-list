@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.3'
 
+gem 'puma'
 gem 'devise'
 gem 'omniauth-github', :github => 'intridea/omniauth-github'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
