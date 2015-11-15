@@ -10,17 +10,25 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
+    %nav.navbar.navbar-default
+      .container
+        .navbar-header
+          = link_to 'Mail List', root_path, class: 'navbar-brand'
+        %ul.nav.navbar-nav.navbar-right
+          - if user_signed_in?
+            %li= link_to 'Sign out', destroy_user_session_path, method: :delete
+          - else
+            %li= link_to 'Sign in', new_user_session_path
+
     .container
       .row
         .col-sm-12
-          %ul
-            %li= cookies["_nw_auth_session"]
-            - flash.to_h.each_pair do |name, value|
-              .alert.alert-info.alert-dismissable{role: 'alert'}
-                %button.close{type: 'button', 'data-dismiss': 'alert', 'aria-label': 'Close'}
-                  %span{'aria-hidden':true} &times;
-                %strong= name.capitalize
-                = value
+          - flash.to_h.each_pair do |name, value|
+            .alert.alert-info.alert-dismissable{role: 'alert'}
+              %button.close{type: 'button', 'data-dismiss': 'alert', 'aria-label': 'Close'}
+                %span{'aria-hidden':true} &times;
+              %strong= name.capitalize
+              = value
     .container
       .row
         .col-sm-12

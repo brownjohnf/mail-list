@@ -1,0 +1,39 @@
+%h1
+  Listing
+  = pluralize(@contacts.count, 'contacts')
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th
+      %th Salutation
+      %th First name
+      %th Last name
+      %th Street
+      %th Apt
+      %th City
+      %th State
+      %th Zip
+      %th
+      %th
+      %th
+
+  %tbody
+    - @contacts.each do |contact|
+      %tr
+        %td= contact.id
+        %td= contact.salutation
+        %td= contact.first_name
+        %td= contact.last_name
+        %td= contact.street
+        %td= contact.apt
+        %td= contact.city
+        %td= contact.state
+        %td= contact.zip
+        %td= link_to 'Show', contact
+        %td= link_to 'Edit', edit_contact_path(contact)
+        %td= link_to 'Destroy', contact, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Contact', new_contact_path

@@ -1,0 +1,23 @@
+%h1 Listing contacts_events
+
+%table
+  %thead
+    %tr
+      %th Contact
+      %th Event
+      %th
+      %th
+      %th
+
+  %tbody
+    - @contacts_events.each do |contacts_event|
+      %tr
+        %td= contacts_event.contact
+        %td= contacts_event.event
+        %td= link_to 'Show', contacts_event
+        %td= link_to 'Edit', edit_contacts_event_path(contacts_event)
+        %td= link_to 'Destroy', contacts_event, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Contacts event', new_contacts_event_path

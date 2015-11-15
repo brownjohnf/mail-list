@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Contact:
+  = @contacts_event.contact.name
+%p
+  %b Event:
+  = @contacts_event.event.name
+
+= link_to 'Edit', edit_contacts_event_path(@contacts_event)
+\|
+= link_to 'Back', contacts_events_path

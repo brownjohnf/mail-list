@@ -1,0 +1,39 @@
+%p#notice= notice
+
+%h3= @contact.name
+
+%p
+  %b Salutation:
+  = @contact.salutation
+%p
+  %b First name:
+  = @contact.first_name
+%p
+  %b Last name:
+  = @contact.last_name
+%p
+  %b Street:
+  = @contact.street
+%p
+  %b Apt:
+  = @contact.apt
+%p
+  %b City:
+  = @contact.city
+%p
+  %b State:
+  = @contact.state
+%p
+  %b Zip:
+  = @contact.zip
+
+= link_to 'Edit', edit_contact_path(@contact)
+\|
+= link_to 'Back', contacts_path
+
+%h3= pluralize(@contact.events.count, 'Event')
+
+%ol
+  - @contact.events.each do |event|
+    %li= link_to event.name, event
+

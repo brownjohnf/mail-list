@@ -11,7 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107045945) do
+ActiveRecord::Schema.define(version: 20151115222428) do
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "salutation"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "street"
+    t.string   "apt"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts_events", force: :cascade do |t|
+    t.integer  "contact_id"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "contacts_events", ["contact_id"], name: "index_contacts_events_on_contact_id"
+  add_index "contacts_events", ["event_id"], name: "index_contacts_events_on_event_id"
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "start"
+    t.datetime "end"
+    t.string   "url"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
