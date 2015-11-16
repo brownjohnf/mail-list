@@ -13,14 +13,29 @@ CITY = 6
 STATE = 7
 ZIP = 8
 
+STDERR.puts 'destroying things'
+[
+  Contact,
+  Event,
+  ContactsEvent,
+].map(&:destroy_all)
+
+events = Event.create!([
+  {
+    name: 'Christmas Card, 2015',
+    description: 'Emily and Jack send a Christmas card!',
+  },{
+    name: 'Wedding',
+    description: 'Emily and Jack get married!',
+  }
+])
+
 STDERR.puts 'reading csv'
 addresses = CSV.read('./addresses.csv')
 
 STDERR.puts 'unshifting headers'
 STDERR.puts Hash[addresses.shift.each_with_index.to_a].invert
 
-STDERR.puts 'destroying contacts'
-Contact.destroy_all
 
 STDERR.puts 'loading contacts'
 addresses.each do |addr|
@@ -33,6 +48,7 @@ addresses.each do |addr|
     city: addr[CITY],
     state: addr[STATE],
     zip: addr[ZIP],
+    events: events,
   })
 end; nil
 
